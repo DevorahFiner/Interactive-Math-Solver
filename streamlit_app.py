@@ -35,20 +35,20 @@ if operation == "Solve Quadratic Equation":
         st.write(f"### Solutions: {solutions}")
 
         # Plot the quadratic function
-        x_vals = np.linspace(-10, 10, 400)
+        x_vals = np.linspace(-15, 15, 400)  # Adjusted x range
         y_vals = a * x_vals ** 2 + b * x_vals + c
         
-        plt.figure(figsize=(10, 6))
+        plt.figure(figsize=(12, 8))  # Increased figure size
         plt.plot(x_vals, y_vals, label=f"{a}x² + {b}x + {c}", color='blue')
         plt.axhline(0, color='black', linewidth=0.8, linestyle='--')  # x-axis
         plt.axvline(0, color='black', linewidth=0.8, linestyle='--')  # y-axis
-        plt.title(f"Quadratic Function: {a}x² + {b}x + {c}", fontsize=16)
-        plt.xlabel("x", fontsize=14)
-        plt.ylabel("f(x)", fontsize=14)
+        plt.title(f"Quadratic Function: {a}x² + {b}x + {c}", fontsize=20)
+        plt.xlabel("x", fontsize=16)
+        plt.ylabel("f(x)", fontsize=16)
         plt.grid(color='gray', linestyle='--', linewidth=0.5)
-        plt.legend()
-        plt.xlim(-10, 10)
-        plt.ylim(min(y_vals) - 10, max(y_vals) + 10)
+        plt.legend(fontsize=14)
+        plt.xlim(-15, 15)  # Adjusted x limits
+        plt.ylim(min(y_vals) - 10, max(y_vals) + 10)  # Adjusted y limits
         plt.fill_between(x_vals, y_vals, color='skyblue', alpha=0.3)  # Fill area under curve
         st.pyplot(plt)
 
