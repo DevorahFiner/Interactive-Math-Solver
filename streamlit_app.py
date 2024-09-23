@@ -15,16 +15,22 @@ operation = st.sidebar.selectbox(
 if operation == "Solve Quadratic Equation":
     st.header("Solve Quadratic Equation")
     
-    a = st.number_input("Enter coefficient a:", value=1)
-    b = st.number_input("Enter coefficient b:", value=0)
-    c = st.number_input("Enter coefficient c:", value=0)
+    # Input for coefficients with step and help text
+    a = st.number_input("Enter coefficient a:", value=1.0, step=0.1, help="Coefficient of x^2")
+    b = st.number_input("Enter coefficient b:", value=0.0, step=0.1, help="Coefficient of x")
+    c = st.number_input("Enter coefficient c:", value=0.0, step=0.1, help="Constant term")
 
     if st.button("Solve"):
         # Solve quadratic equation ax^2 + bx + c = 0
         x = sp.symbols('x')
         equation = sp.Eq(a*x**2 + b*x + c, 0)
-        solutions = sp.solve(equation, x)
-        st.write(f"Solutions: {solutions}")
+        
+        try:
+            # Get solutions and ensure correct handling of signs
+            solutions = sp.solve(equation, x)
+            st.write(f"Solutions: {solutions}")
+        except Exception as e:
+            st.error(f"Error solving the equation: {e}")
 
 elif operation == "Find Derivative":
     st.header("Find Derivative")
@@ -57,4 +63,6 @@ if operation == "Solve Quadratic Equation" and st.checkbox("Plot the quadratic f
     
     plt.plot(x_vals, y_vals)
     plt.title(f"Quadratic Function: {a}x^2 + {b}x + {c}")
+    plt.axhline(0, color='black',linewidth=1)
+    plt.axvline(0, color='black',linewidth=1)
     st.pyplot(plt)
