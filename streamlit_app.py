@@ -75,7 +75,3 @@ elif operation == "Evaluate Integral":
         integral = sp.integrate(expr, x)
         st.write(f"The integral of {expression} is:")
         st.latex(sp.latex(integral))
-
-        integral_with_C = integral + sp.Symbol('C')
-        st.write(f"The integral of {expression} is:")
-        st.latex(sp.latex(integral_with_C))
